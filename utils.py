@@ -94,7 +94,7 @@ def convert_seconds_to_hms(total_seconds):
     remaining_seconds = total_seconds % 3600
     minutes = remaining_seconds // 60
     seconds = remaining_seconds % 60
-    return f"\n    {hours:02}:{minutes:02}:{seconds:02}"
+    return f"{hours:02}:{minutes:02}:{seconds:02}"
 
 def update_task_time(selected, current_time_in_seconds):
     if selected in variables.task_list:
