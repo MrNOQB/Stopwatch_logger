@@ -1,6 +1,6 @@
 import variables
 from tkinter.messagebox import askyesno
-from Stop_WatchLogger.database import save_tasks
+from database import save_tasks
 
 
 def submit(user_input, selected_task, list_of_tasks, message_label):
@@ -11,7 +11,7 @@ def submit(user_input, selected_task, list_of_tasks, message_label):
         return
 
     if user_entry.lower() in (task.lower() for task in variables.task_list.keys()):
-        message_label.label.configure(text_color="red", text="Task already inputted!")
+        message_label.label.configure(text_color="red", text="Task already \n inputted!")
         return
 
 
@@ -44,7 +44,7 @@ def limit_input(text_var, message_label):
 
 def clear_tasks(list_of_tasks, selected_task, message_label):
     if not variables.task_list:
-        message_label.label.configure(text_color="red", text="List is already clear!")
+        message_label.label.configure(text_color="red", text="List is already \n clear!")
         return
 
     user_answer = askyesno(title="Clearing all tasks", message="Are you sure you want to clear all tasks?")
@@ -136,10 +136,10 @@ def save_time(selected_task, message_label, list_of_tasks):
 
     if not selected:
 
-        message_label.label.configure(text_color="red", text="No task is selected!")
+        message_label.label.configure(text_color="red", text="No task is \n selected!")
         return
     elif is_zero2:
-        message_label.label.configure(text_color="red", text="No enough time to save!")
+        message_label.label.configure(text_color="red", text="No enough time \n to save!")
         return
 
     message_label.label.configure(text_color="red", text="")

@@ -1,8 +1,8 @@
-from Stop_WatchLogger.variables import formatted_tasks
-from Stop_WatchLogger.gui import *
-from Stop_WatchLogger.stopwatch import start, stop, reset
+from variables import formatted_tasks
+from gui import *
+from stopwatch import start, stop, reset
 import variables
-from Stop_WatchLogger.utils import submit, limit_input, clear_tasks, delete_task, save_time
+from utils import submit, limit_input, clear_tasks, delete_task, save_time
 from variables import task_list
 
 

@@ -1,4 +1,4 @@
-from Stop_WatchLogger.database import load_tasks
+from database import load_tasks
 
 
 one_tenth_of_a_second = 0
