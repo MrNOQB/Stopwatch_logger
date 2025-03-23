@@ -1,7 +1,7 @@
 import json
 import os
 
-JSON_FILE = "tasks.json"  # File name
+JSON_FILE = "tasks.json"  
 
 def load_tasks():
     if os.path.exists(JSON_FILE):
