@@ -1,7 +1,8 @@
-from gui import *
-from stopwatch import start, stop, reset
+from Stop_WatchLogger.variables import formatted_tasks
+from Stop_WatchLogger.gui import *
+from Stop_WatchLogger.stopwatch import start, stop, reset
 import variables
-from utils import submit, limit_input, clear_tasks, delete_task, save_time
+from Stop_WatchLogger.utils import submit, limit_input, clear_tasks, delete_task, save_time
 from variables import task_list
 
 
@@ -30,7 +31,7 @@ def update_buttons():
 
     for button, condition in buttons:
         new_state = "disabled" if condition else "normal"
-        new_color = ("gray30", "gray10") if condition else ("#1f6aa5")
+        new_color = ("gray30", "gray10") if condition else "#1f6aa5"
 
         if last_states.get(button) != new_state:
             button.configure(state=new_state, fg_color=new_color)
@@ -57,14 +58,14 @@ def update_gui():
 gui = MainWindow()
 text_var = StringVar()
 welcome_label = Labels(gui.window, "Input your task here!", ("Candara", 32), 10, 10)
-message_label = Labels(gui.window, "", ('Impact', 22), 240, 60)
-user_input = Entries(gui.window, 220, ("Terminal", 20), 10, 60)
+message_label = Labels(gui.window, "", ('Impact', 22), 260, 60)
+user_input = Entries(gui.window, 245, ("Terminal", 20), 10, 60)
 user_input.entry.configure(textvariable=text_var)
 text_var.trace_add("write", lambda *args: limit_input(text_var, message_label))
 submit_button = Buttons(gui.window, "Submit", 70, ('Arial', 30) , 30, 100)
 submit_button.button.configure(command=lambda: submit(user_input, selected_task, list_of_tasks, message_label))
-selected_task = ComboBoxes(gui.window, 490, 10, task_list)
-list_of_tasks = ReadOnlyTextBox(gui.window, 462, 50, task_list, 175, 200)
+selected_task = ComboBoxes(gui.window, 490, 10, list(task_list.keys()))
+list_of_tasks = ReadOnlyTextBox(gui.window, 442, 50, formatted_tasks, 195, 200)
 list_of_tasks.textbox.configure(font=("Terminal", 18))
 clear_button = Buttons(gui.window, "Clear all", 90, ('Arial', 17), 508, 290)
 clear_button.button.configure(command=lambda: clear_tasks(list_of_tasks, selected_task, message_label))

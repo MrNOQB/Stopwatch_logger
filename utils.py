@@ -1,5 +1,7 @@
 import variables
 from tkinter.messagebox import askyesno
+from Stop_WatchLogger.database import save_tasks
+
 
 def submit(user_input, selected_task, list_of_tasks, message_label):
     user_entry = user_input.entry.get().strip()
@@ -28,6 +30,7 @@ def submit(user_input, selected_task, list_of_tasks, message_label):
         list_of_tasks.textbox.insert("end", f"\n{task}:\n{time}\n\n")
 
     list_of_tasks.textbox.configure(state="disabled")
+    save_tasks(task_list=variables.task_list)
 
     user_input.entry.delete(0, "end")
     message_label.label.configure(text_color="red", text="")
@@ -55,6 +58,7 @@ def clear_tasks(list_of_tasks, selected_task, message_label):
         list_of_tasks.textbox.configure(state="normal")
         list_of_tasks.textbox.delete("1.0", "end")
         list_of_tasks.textbox.configure(state="disabled")
+        save_tasks(task_list=variables.task_list)
 
         message_label.label.configure(text_color="red", text="")
 
@@ -75,6 +79,7 @@ def delete_task(selected_task, list_of_tasks, message_label):
 
     list_of_tasks.textbox.configure(state="normal")
     list_of_tasks.textbox.delete("1.0", "end")
+    save_tasks(task_list=variables.task_list)
 
 
     for task in variables.original_task_order:
@@ -127,8 +132,6 @@ def save_time(selected_task, message_label, list_of_tasks):
 
     selected = selected_task.listbox.get()
 
-    print(selected)
-
     current_time_in_seconds =  variables.seconds + (variables.minutes * 60 ) + (variables.hours * 3600)
 
     if not selected:
@@ -142,5 +145,5 @@ def save_time(selected_task, message_label, list_of_tasks):
     message_label.label.configure(text_color="red", text="")
     update_task_time(selected, current_time_in_seconds)
     refresh_task_list_display(list_of_tasks)
+    save_tasks(task_list=variables.task_list)
     reset_stopwatch()
-
